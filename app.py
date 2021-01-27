@@ -12,8 +12,6 @@ def score():
 	candidate = request.args["candidate"]
 	references = request.args.getlist("references")
 
-	logging.info(references)
-
 	# NLTK 패키지 구현되어져 있는 코드로 계산한 BLEU 점수
 	score = bleu.sentence_bleu(list(map(lambda ref: ref.split(), references)), candidate.split())
 	ret = {}
@@ -23,4 +21,4 @@ def score():
 
 if __name__ == "__main__":
 	logging.getLogger().setLevel(logging.INFO)
-	app.run(debug=True)
+	app.run(host="0.0.0.0")
